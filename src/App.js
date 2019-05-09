@@ -1,26 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ClassTodo from './ClassTodo';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [selectedOption, setSelectedOption] = useState('');
+    const [showMain, setShowMain] = useState(true);
+
+    const handleClick = (event) => {
+        setSelectedOption(event.target.value);
+        setShowMain(false);
+    };
+    return (
+        <div className="App">
+            {showMain ? <div>
+                    <h3>The Github Profile TODO List</h3>
+                    <button value="1" className="typeButton" onClick={handleClick}>Class Based TODO</button>
+                    <button value="2" className="typeButton" onClick={handleClick}>Function Based TODO</button>
+                </div>
+                : <div></div>}
+            {selectedOption == '1' ? <ClassTodo/> : selectedOption == '2' ? <div>Saravanan</div> : <></>}
+        </div>
+    );
 }
 
 export default App;
